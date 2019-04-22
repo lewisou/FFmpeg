@@ -14,6 +14,7 @@ PREFIX=./output/armeabi-v7a/android
             --enable-decoder=h264 \
             --enable-decoder=aac \
             --enable-parser=h264 \
+            --enable-parser=aac \
             --enable-swscale \
             --enable-demuxer=rtp \
             --enable-demuxer=rtsp \
