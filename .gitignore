@@ -37,3 +37,5 @@
 /src
 /mapfile
 /output
+/build
+/output_ios
