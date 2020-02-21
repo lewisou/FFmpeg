@@ -762,6 +762,12 @@ static int decode_nal_units(H264Context *h, const uint8_t *buf, int buf_size)
     }
 
     ret = ff_h264_execute_decode_slices(h);
+
+    // set decode_error_flags to allow users to detect concealed decoding errors
+    if( (ret < 0 || h->slice_ctx->er.error_occurred) && h->cur_pic_ptr ){
+        h->cur_pic_ptr->f->decode_error_flags |= FF_DECODE_ERROR_INVALID_BITSTREAM|FF_DECODE_ERROR_MISSING_REFERENCE;
+    }
+
     if (ret < 0 && (h->avctx->err_recognition & AV_EF_EXPLODE))
         goto end;
 
